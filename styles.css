@@ -1,0 +1,174 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Barra superior */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    background-color: #fffefe;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Logo no canto esquerdo */
+.logo {
+    display: flex;
+    align-items: center;
+    padding-left: 130px; /* Adiciona espaçamento da borda esquerda */
+}
+.logo-img {
+    width: 190px;
+    height: auto;
+}
+
+/* Seletor de idiomas no canto direito */
+.language-selector select {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Container principal */
+.container {
+    max-width: 530px;
+    margin: 100px auto;
+    padding: 40px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Estilo do formulário */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form label {
+    font-size: 14px;
+    color: #444;
+    text-align: left;
+}
+
+.form input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+button {
+    background-color: #d14529;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b33b22;
+}.title {
+    font-size: 20px;
+    font-weight: normal; /* Remove o negrito */
+    color: #333;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 20px;
+    font-weight: normal; /* Remove o negrito */
+    color: #666;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+/* Estilo do formulário */
+.form label {
+    font-size: 18px;
+    color: #444;
+    text-align: left;
+    font-weight: normal; /* Remove o negrito */
+}
+
+.form input {
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+button {
+    background-color: #d14529;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b33b22;
+}
+.footer {
+    font-size: 15px; /* Tamanho pequeno do texto */
+    color: #666; /* Cor cinza do texto */
+    text-align: left; /* Centraliza o texto no rodapé */
+    margin-top: 50px; /* Espaçamento em relação ao conteúdo acima */
+    padding: 10px; /* Espaçamento interno */
+    padding-left: 130px;
+    border-top: 1px solid #ddd; /* Linha superior para separar o rodapé */
+    background-color: #f9f9f9; /* Cor de fundo clara */
+}
+#responseMessage i {
+    margin-right: 8px; /* Espaçamento entre o ícone e o texto */
+    vertical-align: middle; /* Alinha o ícone ao texto */
+}
+#responseMessage {
+    display: none; /* Oculto por padrão */
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 5px solid #007BFF; /* Linha azul ao lado esquerdo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona sombra para destaque */
+}
+
+#responseMessage.success {
+    background-color: #d4ede8;
+    color: #004943;
+    border: 1px solid #c3e2e6;
+}
+
+#responseMessage.error {
+    background-color: #f8d7da; /* Fundo vermelho claro */
+    color: #721c24; /* Texto vermelho escuro */
+    border: 1px solid #f5c6cb; /* Borda vermelha clara */
+    border-left: 5px solid #dc3545; /* Linha vermelha no lado esquerdo */
+}
+

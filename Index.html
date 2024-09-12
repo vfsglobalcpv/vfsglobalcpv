@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+        <!-- Font Awesome CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <!-- Seu CSS e outras metas -->
+        <link rel="stylesheet" href="styles.css">
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Agendamento</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilo para a barra de resultado */
+        #responseMessage {
+            display: none; /* Oculto por padrão */
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #responseMessage.success {
+            background-color: #d4ede8;
+            color: #004943;
+            border: 1px solid #c3e2e6;
+            border-left: 5px solid #00746a; /* Linha azul ao lado esquerdo */
+        }
+        #responseMessage.error {
+            background-color: #f8d7da; /* Fundo vermelho claro */
+            color: #721c24; /* Texto vermelho escuro */
+            border: 1px solid #f5c6cb; /* Borda vermelha clara */
+            border-left: 5px solid #dc3545; /* Linha vermelha espessa */
+        }
+
+        /* Estilo para ocultar a descrição */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo">
+            <a href="https://visa.vfsglobal.com/ago/pt/prt"></a>
+            <img src="logo.png" alt="VFS Global Logo" class="logo-img">
+        </div>
+        <div class="language-selector">
+            <select id="language" onchange="changeLanguage()">
+                <option value="pt">Portuguese</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Verificação de marcação de agendamento</h1>
+            <p id="description" class="description">Introduza os dados abaixo para verificar a sua candidatura.</p>
+            <!-- Barra de resposta -->
+            <div id="responseMessage"></div>
+        </div>
+    
+        <form id="verificationForm" class="form">
+            <label for="arn">Número ARN*</label>
+            <input type="text" id="arn" name="arn" placeholder="Introduzir valor" required>
+    
+            <label for="passport">Passaporte*</label>
+            <input type="text" id="passport" name="passport" placeholder="Introduzir valor" required>
+    
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <p>AR-6.0.78 © 2024 Grupo VFS Global. Todos os direitos reservados. Informação em conformidade com a ISO 23026</p>
+    </footer>
+
+    <script>
+document.getElementById("verificationForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Impede o envio tradicional do formulário
+
+    // Obter os valores dos campos
+    var arn = document.getElementById("arn").value;
+    var passport = document.getElementById("passport").value;
+
+    // Criar um objeto para armazenar os dados do formulário
+    var formData = new FormData();
+    formData.append("arn", arn);
+    formData.append("passport", passport);
+
+    // Enviar os dados usando Fetch API
+    fetch("processa_form.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        var responseMessage = document.getElementById("responseMessage");
+        var description = document.getElementById("description");
+
+        responseMessage.style.display = 'block'; // Mostra a caixa de resposta
+        description.classList.add('hidden'); // Esconde a descrição padrão
+
+        if (data.includes("Nenhum registro encontrado")) {
+            responseMessage.className = 'error';
+            responseMessage.innerHTML = '<i class="fas fa-times-circle"></i> ' + data;
+        } else if (data.trim().length > 0) {
+            // Exibe a mensagem personalizada com o ícone de verificação
+            responseMessage.className = 'success';
+            responseMessage.innerHTML = '<i class="fas fa-check-circle"></i> ' + data;
+        } else {
+            responseMessage.className = 'error';
+            responseMessage.innerHTML = '<i class="fas fa-times-circle"></i> Resposta não reconhecida.';
+        }
+    })
+    .catch(error => {
+        console.error("Erro:", error);
+        var responseMessage = document.getElementById("responseMessage");
+        var description = document.getElementById("description");
+
+        responseMessage.style.display = 'block';
+        description.classList.add('hidden');
+
+        responseMessage.className = 'error';
+        responseMessage.innerHTML = '<i class="fas fa-times-circle"></i> Ocorreu um erro ao processar a solicitação.';
+    });
+});
+
+    </script>
+</body>
+</html>

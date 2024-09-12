@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserir Novo Agendamento</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Inserir Novo Agendamento</h1>
+        </div>
+    
+        <form action="inserir_agendamento.php" method="POST" class="form">
+            <label for="arn">Número ARN*</label>
+            <input type="text" id="arn" name="arn" placeholder="Introduzir ARN" required>
+    
+            <label for="passport">Passaporte*</label>
+            <input type="text" id="passport" name="passport" placeholder="Introduzir Passaporte" required>
+    
+            <!-- Novo campo de mensagem -->
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Escreva uma mensagem..."></textarea>
+    
+            <button type="submit">Inserir</button>
+        </form>
+    </div>
+</body>
+</html>
